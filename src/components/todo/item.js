@@ -6,7 +6,7 @@ export default class Item extends Component{
         this.state ={
             checked: false
         };
-        this.onCheck= this.onCheck.bind(this);
+
     }
 
 
