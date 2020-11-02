@@ -44,7 +44,7 @@ color: rgba(175, 47, 47, 0.15);
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
  
 }
-.todoHead{
+.todo__head{
   display: flex;
   padding: 16px 0 16px 0;
   width: 100%;
@@ -54,7 +54,7 @@ color: rgba(175, 47, 47, 0.15);
 }
 
 
-.checkAll{
+.todo__head-checkall{
   border: none;
   text-align: center;
   text-decoration: none;
@@ -66,15 +66,12 @@ color: rgba(175, 47, 47, 0.15);
   background: none;
   transform: rotate(90deg);
 }
-.checkAll:active {
+.todo__head-checkall:active {
  color: gray;
 } 
 
-.clicked {
-  color: gray;
-}
 
-.cheks {
+.list-item__checkbox {
 text-align: center;
 width: 40px;
 height: 40px;
@@ -97,7 +94,7 @@ background-image: url(./img/check.svg);
 
 
 
-.inputTodo{
+.todo__head-input{
   box-sizing: border-box;
   background: rgba(0, 0, 0, 0.003);
 position: relative;
@@ -109,19 +106,19 @@ line-height: 1.4em;
 border: 0;
 }
 
-.inputTodo::placeholder{
+.todo__head-input::placeholder{
   opacity: 30%;
   font-style: italic;
 }
 
-.todoMain{
+.todo__main{
   display: flex;
   position: relative;
   
 }
 
 
-.todoItem{
+.todo-list__item{
   display: flex;
   font-family: 'Playfair Display', serif;
   font-size: 25px;
@@ -132,7 +129,7 @@ border: 0;
 
 }
 
-.todoItem label {
+.todo-list__item label {
       word-break: break-all;
       padding: 15px 15px 15px 20px;
       display: block;
@@ -141,7 +138,7 @@ border: 0;
       flex: 2
 }
 
-.delete {
+.list-item__delete {
 
   display: none;
   position: relative;
@@ -161,19 +158,19 @@ border: 0;
 }
 
 
-.delete:hover {
+.list-item__delete:hover {
 color: #af5b5e;
 }
 
-.delete:after {
+.list-item__delete:after {
 content: '×';
 }
 
-.todoItem:hover .delete {
+.todo-list__item:hover .list-item__delete {
 display: block;
 }
 
-.todoList{
+.todo__list{
   margin: 0;
   padding: 0;
   display: flex;
@@ -187,7 +184,7 @@ text-decoration-color: rgb(0, 0, 0);
 }
 
 
-.todofooter{
+.todo__footer{
   display: flex;
   color: #777;
   padding: 10px 15px;
@@ -197,30 +194,30 @@ text-decoration-color: rgb(0, 0, 0);
   
 
 }
-.footerFilters{
+.todo-footer__filters{
 
   margin: 0 10px;
 }
 
-.footerFilters a{
+.todo-footer__filters a{
   color: #777;
   margin: 4px;
   padding: 3px 4px;
   text-decoration: none;
   border-radius: 3px;
 }
-.footerFilters a:hover {
+.todo-footer__filters a:hover {
 border: 1px solid rgba(175, 47, 47, 0.1);
 }
 
-.footerFilters .selected {
+.todo-footer__filters .selected {
 border: 1px solid rgba(175, 47, 47, 0.2);
 }
 
-.clear{
+.todo-footer__clear{
   cursor: pointer;
 }
-.clear:hover {
+.todo-footer__clear:hover {
 text-decoration: underline;
 }
 
@@ -242,7 +239,7 @@ text-align: center;
 
 
 @media all and (max-width: 500px) {
-  .todoHead{
+  .todo__head{
     padding: 16px 0 16px 0;
   }
   .todo{
@@ -250,13 +247,13 @@ text-align: center;
       width: 100%;
       padding: 0 0 0 0px;
   }
-  .inputTodo{
+  .todo__head-input{
     font-size: 24px;
     font-family: inherit;
     font-weight: inherit;
     line-height: 1.4em;
   }
-  .todofooter{
+  .todo__footer{
     padding: 10px 0px;
     height: 60px;
     line-height: 19.6px;;
@@ -265,7 +262,7 @@ text-align: center;
     box-sizing: border-box;
   }
 
-  .footerFilters{
+  .todo-footer__filters{
     position: relative;
     top: 10px;
     margin: 0;

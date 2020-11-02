@@ -1,57 +1,32 @@
-import React, {Component} from 'react';
-import Filters from "./filters"
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/prop-types */
+import React, { Component } from 'react';
+import Filters from './filters';
 
-export default class Footer extends Component{
-    constructor(props){
-        super(props)
-        this.state={
-            filter: "filter"
-        }
+export default class Footer extends Component {
+  render() {
+    const { length } = this.props;
+    const {
+      filter, onFilterSelect, deleteComplete, data,
+    } = this.props;
+    if (data[0]) {
+      return (
+        <div className="todo__footer">
+          <div className="todo-footer__count">
+            {length}
+            {' '}
+            items left
+          </div>
 
-            this.OnFilterAll = this.OnFilterAll.bind(this)
-            this.OnFilterActive = this.OnFilterActive.bind(this)
-            this.OnFilterComplete = this.OnFilterComplete.bind(this)
+          <Filters filter={filter} onFilterSelect={onFilterSelect} />
 
+          <div role="button" tabIndex={-1} className="todo-footer__clear" onClick={deleteComplete}>
+            Очистить выполненные
+          </div>
+        </div>
+      );
     }
-
-    OnFilterAll(){
-        this.setState(({filter}) =>{
-            filter+=" selected"
-        })
-    }
-    OnFilterActive(){
-        this.setState(({filter}) =>{
-            filter+=" selected"
-        })
-    }
-    OnFilterComplete(){
-        this.setState(({filter}) =>{
-           const newfilter=filter+ " selected"
-            return newfilter
-        })
-    }
-
-
-
-    render(){
-        const {length}=this.props;
-        const {filter, onFilterSelect, DeleteComplete} = this.props;
-        if(this.props.data[0]){
-    return(
-    <div className="todofooter">
-                <div className="count">{length} items left</div>
-                
-                
-                <Filters
-                filter={filter}
-                onFilterSelect={onFilterSelect}/>
-                   
-                <div className="clear" onClick={DeleteComplete}>Очистить выполненные</div>
-    </div>
-    )}
-    else{
-        return('')
-    }
+    return '';
+  }
 }
-}
-

@@ -1,11 +1,12 @@
-import React from "react";
+/* eslint-disable react/jsx-filename-extension */
+import React from 'react';
 
-function Credits(){
-    return (
-        <div className="credits">
-            <a href="https://vk.com/id91154641">Данила Кольцов</a>
-        </div>
-    )
+function Credits() {
+  return (
+    <div className="credits">
+      <a href="https://vk.com/id91154641">Данила Кольцов</a>
+    </div>
+  );
 }
 
 export default Credits;

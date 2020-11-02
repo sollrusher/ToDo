@@ -1,11 +1,12 @@
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 
-function Header(){
-    return(
-        <div className="header">
-            <h1>todos</h1>
-        </div>
-    )
+function Header() {
+  return (
+    <div className="header">
+      <h1>todos</h1>
+    </div>
+  );
 }
 
-export default Header
+export default Header;
