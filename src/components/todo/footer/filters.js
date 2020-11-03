@@ -34,10 +34,6 @@ export default class Filters extends Component {
 }
 
 Filters.propTypes = {
-  filter: PropTypes.func,
-  onFilterSelect: PropTypes.func,
-};
-Filters.defaultProps = {
-  filter: () => {},
-  onFilterSelect: () => {},
+  filter: PropTypes.func.isRequired,
+  onFilterSelect: PropTypes.func.isRequired,
 };

@@ -10,6 +10,7 @@ export default class Footer extends Component {
     const {
       filter, onFilterSelect, deleteComplete, data,
     } = this.props;
+
     if (data[0]) {
       return (
         <div className="todo__footer">

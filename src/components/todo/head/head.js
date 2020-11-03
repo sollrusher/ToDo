@@ -1,46 +1,41 @@
 /* eslint-disable react/jsx-filename-extension */
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { addItem } from '../../redux/actions';
 
-export default class Head extends Component {
-  constructor(props) {
-    super(props);
-
-    this.onValueChange = this.onValueChange.bind(this);
-  }
-
-  onValueChange(event) {
-    const { onAdd } = this.props;
+const Head = ({ dispatch }) => {
+  const onValueChange = (event) => {
     if (event.key === 'Enter') {
-      onAdd(event.target.value);
       const temp = event;
+      dispatch(addItem(event.target.value));
       temp.target.value = '';
     }
-  }
+  };
 
-  render() {
-    const { setAllToComplete } = this.props;
+  // const { setAllToComplete } = this.props;
 
-    return (
-      <div className="todo__head">
-        <button type="button" className="todo__head-checkall" onClick={setAllToComplete}>
-          ❯
-        </button>
-        <input
-          type="text"
-          placeholder="Введите то что вам нужно сделать"
-          className="todo__head-input"
-          onKeyPress={this.onValueChange}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="todo__head">
+      <button
+        type="button"
+        className="todo__head-checkall"
+        // onClick={setAllToComplete}
+      >
+        ❯
+      </button>
+      <input
+        type="text"
+        placeholder="Введите то что вам нужно сделать"
+        className="todo__head-input"
+        onKeyPress={onValueChange}
+      />
+    </div>
+  );
+};
+
 Head.propTypes = {
-  onAdd: PropTypes.func,
-  setAllToComplete: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
 };
-Head.defaultProps = {
-  onAdd: () => {},
-  setAllToComplete: () => {},
-};
+
+export default connect()(Head);
