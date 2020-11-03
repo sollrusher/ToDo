@@ -1,5 +1,7 @@
+/* eslint-disable no-console */
 /* eslint-disable no-plusplus */
 import React, { Component } from 'react';
+import memoizeOne from 'memoize-one';
 import Credits from '../credits/credits';
 import Header from '../header/header';
 import Footer from '../todo/footer/footer';
@@ -108,6 +110,7 @@ export default class App extends Component {
       checked: false,
       id: this.maxId++,
     };
+
     this.setState(({ data }) => {
       const newArr = [...data, newItem];
       return {
@@ -117,8 +120,13 @@ export default class App extends Component {
   }
 
   render() {
+    const add = (checked, length) => length - checked;
+    const memoizedAdd = memoizeOne(add);
+
     const { filter, data } = this.state;
-    const checks = data.filter((item) => item.checked).length;
+    const checked = data.filter((item) => item.checked).length;
+
+    memoizedAdd(1, 2);
 
     const show = this.setFilterItem(data, filter);
 
@@ -133,7 +141,7 @@ export default class App extends Component {
             onToggleChecked={this.onToggleChecked}
           />
           <Footer
-            length={data.length - checks}
+            length={memoizedAdd(checked, data.length)}
             filter={filter}
             onFilterSelect={this.onFilterSelect}
             data={data}
