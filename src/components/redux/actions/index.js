@@ -1,5 +1,5 @@
 /* eslint-disable no-plusplus */
-let nextTodoId = 0;
+let nextTodoId = 1;
 
 export const addItem = (label) => ({
   type: 'ADD_ITEM',

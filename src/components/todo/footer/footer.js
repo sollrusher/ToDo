@@ -3,19 +3,24 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import Filters from './filters';
+import { connect } from 'react-redux';
+import memoizeOne from 'memoize-one';
+import {deleteComplete} from '../../redux/actions';
 
-export default class Footer extends Component {
+class Footer extends Component {
+  calculateUnchecked = memoizeOne(item => item.filter((item) => !item.checked).length)
   render() {
-    const { length } = this.props;
     const {
-      filter, onFilterSelect, deleteComplete, data,
+      filter, onFilterSelect, deleteComplete, items,
     } = this.props;
 
-    if (data[0]) {
+       const unchecked = this.calculateUnchecked(items)
+
+    if (items.length) {
       return (
         <div className="todo__footer">
           <div className="todo-footer__count">
-            {length}
+            {unchecked}
             {' '}
             items left
           </div>
@@ -31,3 +36,18 @@ export default class Footer extends Component {
     return '';
   }
 }
+
+
+const mapStateToProps = store => {
+  return {
+    items: store.todos,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    deleteComplete: ()=> dispatch(deleteComplete())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Footer)

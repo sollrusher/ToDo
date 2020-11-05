@@ -1,26 +1,30 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { addItem } from '../../redux/actions';
+import { useDispatch } from 'react-redux';
+import { addItem, setAllToComplete } from '../../redux/actions';
 
-const Head = ({ dispatch }) => {
+const Head = () => {
+  const dispatch = useDispatch();
   const onValueChange = (event) => {
     if (event.key === 'Enter') {
       const temp = event;
       dispatch(addItem(event.target.value));
+      
       temp.target.value = '';
     }
   };
 
-  // const { setAllToComplete } = this.props;
+  const onComplete = () => {
+    dispatch(setAllToComplete());
+  }
+
 
   return (
     <div className="todo__head">
       <button
         type="button"
         className="todo__head-checkall"
-        // onClick={setAllToComplete}
+        onClick={onComplete}
       >
         ❯
       </button>
@@ -34,8 +38,7 @@ const Head = ({ dispatch }) => {
   );
 };
 
-Head.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
+// приклеиваем данные из store
 
-export default connect()(Head);
+
+export default Head;

@@ -119,16 +119,15 @@ export default class App extends Component {
     });
   }
 
+  calculateUnchecked = memoizeOne(data => data.filter((item) => !item.checked).length)
+
   render() {
-    const add = (checked, length) => length - checked;
-    const memoizedAdd = memoizeOne(add);
 
     const { filter, data } = this.state;
-    const checked = data.filter((item) => item.checked).length;
-
-    memoizedAdd(1, 2);
 
     const show = this.setFilterItem(data, filter);
+
+    const unchecked = this.calculateUnchecked(data)
 
     return (
       <div>
@@ -137,15 +136,15 @@ export default class App extends Component {
           <Head onAdd={this.addItem} AllComplete={this.setAllToComplete} />
           <Main
             posts={show}
-            onDelete={this.deleteItem}
+            onDeletes={this.deleteItem}
             onToggleChecked={this.onToggleChecked}
           />
           <Footer
-            length={memoizedAdd(checked, data.length)}
+            length={unchecked}
             filter={filter}
             onFilterSelect={this.onFilterSelect}
             data={data}
-            DeleteComplete={this.deleteComplete}
+            
           />
         </div>
         <Credits />
@@ -153,3 +152,5 @@ export default class App extends Component {
     );
   }
 }
+
+

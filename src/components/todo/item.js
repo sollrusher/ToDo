@@ -3,14 +3,18 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 
-export default function Item({
-  label, id, onDelete, onToggleChecked, checked,
+
+
+function Item({
+  label, id, onDelete, checked, onToggleChecked
 }) {
+  // const {toggleCheck} = this.props;
   let nameClass = 'todo-list__item';
 
   if (checked) {
     nameClass += ' active';
   }
+
 
   return (
     <li key={id} className={nameClass}>
@@ -18,5 +22,9 @@ export default function Item({
       <label>{label}</label>
       <button type="button" className="list-item__delete" onClick={onDelete}> </button>
     </li>
-  );
+  ); 
+  
 }
+
+
+export default Item;
