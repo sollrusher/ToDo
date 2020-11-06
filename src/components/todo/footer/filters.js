@@ -13,8 +13,8 @@ export default class Filters extends Component {
   }
 
   render() {
+    const { filter, onFilterSelect } = this.props;
     const buttons = this.buttons.map(({ name, label }) => {
-      const { filter, onFilterSelect } = this.props;
       const active = filter === name;
       const classname = active ? 'todo-footer__filters selected' : 'todo-footer__filters';
       return (

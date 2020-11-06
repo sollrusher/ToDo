@@ -38,7 +38,8 @@ color: rgba(175, 47, 47, 0.15);
 .todo{
   background-color: white;
   color: white;
-
+  width: 550px;
+  max-width: 550px;
   padding: 0;
 
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
@@ -191,12 +192,12 @@ text-decoration-color: rgb(0, 0, 0);
   height: 20px;
   text-align: center;
   justify-content: space-between;
-  
+  font-size: 15px;
 
 }
 .todo-footer__filters{
 
-  margin: 0 10px;
+  margin: 0 5px;
 }
 
 .todo-footer__filters a{
@@ -216,6 +217,7 @@ border: 1px solid rgba(175, 47, 47, 0.2);
 
 .todo-footer__clear{
   cursor: pointer;
+  outline: none;
 }
 .todo-footer__clear:hover {
 text-decoration: underline;

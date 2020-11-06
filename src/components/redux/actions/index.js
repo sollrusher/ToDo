@@ -25,8 +25,12 @@ export const onToggleChecked = (id) => ({
   id,
 });
 
-export const filters = {
-  SHOW_ALL: 'all',
-  SHOW_COMPLETE: 'complete',
-  SHOW_ACTIVE: 'active',
-};
+export const setFilterAll = () => ({
+  type: 'SHOW_ALL',
+});
+export const setFilterComplete = () => ({
+  type: 'SHOW_COMPLETE',
+});
+export const setFilterActive = () => ({
+  type: 'SHOW_ACTIVE',
+});

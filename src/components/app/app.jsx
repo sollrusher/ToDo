@@ -9,6 +9,8 @@ import Head from '../todo/head/head';
 import Main from '../todo/main/main';
 
 export default class App extends Component {
+  calculateUnchecked = memoizeOne((data) => data.filter((item) => !item.checked).length)
+
   constructor(props) {
     super(props);
     this.state = {
@@ -119,15 +121,12 @@ export default class App extends Component {
     });
   }
 
-  calculateUnchecked = memoizeOne(data => data.filter((item) => !item.checked).length)
-
   render() {
-
     const { filter, data } = this.state;
 
     const show = this.setFilterItem(data, filter);
 
-    const unchecked = this.calculateUnchecked(data)
+    const unchecked = this.calculateUnchecked(data);
 
     return (
       <div>
@@ -141,10 +140,8 @@ export default class App extends Component {
           />
           <Footer
             length={unchecked}
-            filter={filter}
-            onFilterSelect={this.onFilterSelect}
             data={data}
-            
+
           />
         </div>
         <Credits />
@@ -152,5 +149,3 @@ export default class App extends Component {
     );
   }
 }
-
-

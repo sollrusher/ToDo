@@ -6,18 +6,19 @@ import { addItem, setAllToComplete } from '../../redux/actions';
 const Head = () => {
   const dispatch = useDispatch();
   const onValueChange = (event) => {
-    if (event.key === 'Enter') {
-      const temp = event;
-      dispatch(addItem(event.target.value));
-      
-      temp.target.value = '';
+    if (event.target.value) {
+      if (event.key === 'Enter') {
+        const temp = event;
+        dispatch(addItem(event.target.value));
+
+        temp.target.value = '';
+      }
     }
   };
 
   const onComplete = () => {
     dispatch(setAllToComplete());
-  }
-
+  };
 
   return (
     <div className="todo__head">
@@ -39,6 +40,5 @@ const Head = () => {
 };
 
 // приклеиваем данные из store
-
 
 export default Head;

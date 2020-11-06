@@ -1,20 +1,24 @@
+/* eslint-disable no-console */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
-import Filters from './filters';
 import { connect } from 'react-redux';
 import memoizeOne from 'memoize-one';
-import {deleteComplete} from '../../redux/actions';
+import Filters from './filters';
+import {
+  deleteComplete, setFilterAll, setFilterActive, setFilterComplete,
+} from '../../redux/actions';
 
 class Footer extends Component {
-  calculateUnchecked = memoizeOne(item => item.filter((item) => !item.checked).length)
+  calculateUnchecked = memoizeOne((items) => items.filter((item) => !item.checked).length)
+
   render() {
     const {
-      filter, onFilterSelect, deleteComplete, items,
+      filter, onFilterSelect, items, delComplete,
     } = this.props;
 
-       const unchecked = this.calculateUnchecked(items)
+    const unchecked = this.calculateUnchecked(items);
 
     if (items.length) {
       return (
@@ -27,7 +31,7 @@ class Footer extends Component {
 
           <Filters filter={filter} onFilterSelect={onFilterSelect} />
 
-          <div role="button" tabIndex={-1} className="todo-footer__clear" onClick={deleteComplete}>
+          <div role="button" tabIndex={-1} className="todo-footer__clear" onClick={delComplete}>
             Очистить выполненные
           </div>
         </div>
@@ -37,17 +41,19 @@ class Footer extends Component {
   }
 }
 
+const mapStateToProps = (store) => ({
+  items: store.todos,
+  filter: store.filter,
+});
 
-const mapStateToProps = store => {
-  return {
-    items: store.todos,
-  }
-}
+const mapDispatchToProps = (dispatch) => ({
+  delComplete: () => dispatch(deleteComplete()),
+  onFilterSelect: (name) => {
+    console.log(name);
+    if (name === 'all') dispatch(setFilterAll());
+    if (name === 'active') dispatch(setFilterActive());
+    if (name === 'complete') dispatch(setFilterComplete());
+  },
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    deleteComplete: ()=> dispatch(deleteComplete())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Footer)
+export default connect(mapStateToProps, mapDispatchToProps)(Footer);
