@@ -52,19 +52,16 @@ const filter = (state = 'all', action) => {
   switch (action.type) {
     case 'SHOW_ALL':
     {
-      console.log('rabumva');
       const newState = 'all';
       return newState;
     }
     case 'SHOW_ACTIVE':
     {
-      console.log('acti');
       const newState = 'active';
       return newState;
     }
     case 'SHOW_COMPLETE':
     {
-      console.log(state);
       const newState = 'complete';
       return newState;
     }

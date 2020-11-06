@@ -49,7 +49,6 @@ const mapStateToProps = (store) => ({
 const mapDispatchToProps = (dispatch) => ({
   delComplete: () => dispatch(deleteComplete()),
   onFilterSelect: (name) => {
-    console.log(name);
     if (name === 'all') dispatch(setFilterAll());
     if (name === 'active') dispatch(setFilterActive());
     if (name === 'complete') dispatch(setFilterComplete());

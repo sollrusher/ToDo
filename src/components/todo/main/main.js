@@ -19,10 +19,8 @@ function setFilterItem(item, filter) {
 }
 
 function Main({
-  store, onDelete, items, onToggle, filter,
+  onDelete, items, onToggle, filter,
 }) {
-  // eslint-disable-next-line no-console
-  console.log(store);
   const show = setFilterItem(items, filter);
   const elements = show.map((item) => (
     <Item
@@ -42,7 +40,6 @@ function Main({
 }
 
 const mapStateToProps = (store) => ({
-  store,
   filter: store.filter,
   items: store.todos,
 });
