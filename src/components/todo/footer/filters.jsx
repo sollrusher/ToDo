@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
@@ -34,6 +33,6 @@ export default class Filters extends Component {
 }
 
 Filters.propTypes = {
-  filter: PropTypes.func.isRequired,
+  filter: PropTypes.string.isRequired,
   onFilterSelect: PropTypes.func.isRequired,
 };

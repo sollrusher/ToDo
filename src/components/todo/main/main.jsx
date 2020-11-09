@@ -1,9 +1,8 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Item from '../item';
-import { onToggleChecked, deleteItem } from '../../redux/actions';
+import { onToggleChecked, deleteItem } from '../../../store/todos/todos.action';
 
 function setFilterItem(item, filter) {
   if (filter === 'complete') {
@@ -41,7 +40,7 @@ function Main({
 
 const mapStateToProps = (store) => ({
   filter: store.filter,
-  items: store.todos,
+  items: store.todos.todoItems,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -50,3 +49,10 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
+
+Main.propTypes = {
+  onDelete: PropTypes.func.isRequired,
+  items: PropTypes.arrayOf.isRequired,
+  onToggle: PropTypes.func.isRequired,
+  filter: PropTypes.string.isRequired,
+};

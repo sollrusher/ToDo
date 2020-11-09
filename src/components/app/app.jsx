@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable no-plusplus */
 import React from 'react';
 import Credits from '../credits/credits';
 import Header from '../header/header';

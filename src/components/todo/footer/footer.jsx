@@ -1,17 +1,19 @@
-/* eslint-disable no-console */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable react/jsx-filename-extension */
-/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import memoizeOne from 'memoize-one';
 import Filters from './filters';
 import {
-  deleteComplete, setFilterAll, setFilterActive, setFilterComplete,
-} from '../../redux/actions';
+  setFilterAll,
+  setFilterActive,
+  setFilterComplete,
+} from '../../../store/filter/filter.action';
+import { deleteComplete } from '../../../store/todos/todos.action';
 
 class Footer extends Component {
-  calculateUnchecked = memoizeOne((items) => items.filter((item) => !item.checked).length)
+  calculateUnchecked = memoizeOne(
+    (items) => items.filter((item) => !item.checked).length,
+  );
 
   render() {
     const {
@@ -31,7 +33,13 @@ class Footer extends Component {
 
           <Filters filter={filter} onFilterSelect={onFilterSelect} />
 
-          <div role="button" tabIndex={-1} className="todo-footer__clear" onClick={delComplete}>
+          <div
+            role="button"
+            tabIndex={-1}
+            className="todo-footer__clear"
+            onClick={delComplete}
+            onKeyDown={delComplete}
+          >
             Очистить выполненные
           </div>
         </div>
@@ -42,7 +50,7 @@ class Footer extends Component {
 }
 
 const mapStateToProps = (store) => ({
-  items: store.todos,
+  items: store.todos.todoItems,
   filter: store.filter,
 });
 
@@ -56,3 +64,10 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Footer);
+
+Footer.propTypes = {
+  filter: PropTypes.string.isRequired,
+  onFilterSelect: PropTypes.func.isRequired,
+  items: PropTypes.shape.isRequired,
+  delComplete: PropTypes.func.isRequired,
+};

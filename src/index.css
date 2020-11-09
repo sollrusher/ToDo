@@ -130,7 +130,7 @@ border: 0;
 
 }
 
-.todo-list__item label {
+.todo-list__item text {
       word-break: break-all;
       padding: 15px 15px 15px 20px;
       display: block;
@@ -179,7 +179,7 @@ display: block;
   width: 100%;
 }
 
-.active label{
+.active text{
   text-decoration: line-through;
 text-decoration-color: rgb(0, 0, 0);
 }
