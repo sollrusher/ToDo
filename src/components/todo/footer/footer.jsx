@@ -51,7 +51,7 @@ class Footer extends Component {
 
 const mapStateToProps = (store) => ({
   items: store.todos.todoItems,
-  filter: store.filter,
+  filter: store.filter.filterSelect,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -68,6 +68,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(Footer);
 Footer.propTypes = {
   filter: PropTypes.string.isRequired,
   onFilterSelect: PropTypes.func.isRequired,
-  items: PropTypes.shape.isRequired,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      checked: PropTypes.bool.isRequired,
+      id: PropTypes.number.isRequired,
+    }).isRequired,
+  ).isRequired,
   delComplete: PropTypes.func.isRequired,
 };

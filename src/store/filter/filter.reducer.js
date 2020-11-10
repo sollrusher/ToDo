@@ -4,22 +4,30 @@ import {
   SHOW_ACTIVE,
 } from '../actionTypes';
 
-const filter = (state = 'all', action) => {
+const initialState = { filterSelect: 'all' };
+
+const filter = (state = initialState, action) => {
   switch (action.type) {
     case SHOW_ALL:
     {
-      const newState = 'all';
-      return newState;
+      return {
+        ...state,
+        filterSelect: 'all',
+      };
     }
     case SHOW_ACTIVE:
     {
-      const newState = 'active';
-      return newState;
+      return {
+        ...state,
+        filterSelect: 'active',
+      };
     }
     case SHOW_COMPLETE:
     {
-      const newState = 'complete';
-      return newState;
+      return {
+        ...state,
+        filterSelect: 'complete',
+      };
     }
     default:
       return state;

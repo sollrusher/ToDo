@@ -20,7 +20,8 @@ function setFilterItem(item, filter) {
 function Main({
   onDelete, items, onToggle, filter,
 }) {
-  const show = setFilterItem(items, filter);
+  const show = React.useMemo(() => setFilterItem(items, filter), [items, filter]);
+
   const elements = show.map((item) => (
     <Item
       label={item.label}
@@ -39,7 +40,7 @@ function Main({
 }
 
 const mapStateToProps = (store) => ({
-  filter: store.filter,
+  filter: store.filter.filterSelect,
   items: store.todos.todoItems,
 });
 
@@ -52,7 +53,13 @@ export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
 Main.propTypes = {
   onDelete: PropTypes.func.isRequired,
-  items: PropTypes.arrayOf.isRequired,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      checked: PropTypes.bool.isRequired,
+      id: PropTypes.number.isRequired,
+    }).isRequired,
+  ).isRequired,
   onToggle: PropTypes.func.isRequired,
   filter: PropTypes.string.isRequired,
 };
